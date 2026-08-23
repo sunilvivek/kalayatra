@@ -45,8 +45,14 @@ export default function ArtTraditions({ onExploreTradition, onLocateLocation }: 
         <SectionHeading
           eyebrow="Movements & Schools"
           align="center"
+          tone="indigo"
           headingId="traditions-heading"
-          title="Major Art Traditions of India"
+          title={
+            <>
+              Major Art Traditions of{" "}
+              <span className="text-gradient-festival italic">India</span>
+            </>
+          }
           description="Each tradition links directly to the map locations where it can be studied. Select a card to filter the map."
         />
 

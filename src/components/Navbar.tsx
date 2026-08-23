@@ -25,15 +25,20 @@ export default function Navbar({ theme, onToggleTheme }: Props) {
         className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8"
       >
         <a href="#top" className="flex items-center gap-2.5">
-          <span className="grid h-9 w-9 place-items-center rounded-xl bg-accent text-on-accent shadow-sm">
+          <span className="brand-tile grid h-9 w-9 place-items-center rounded-xl text-on-accent shadow-sm">
             <Landmark className="h-5 w-5" aria-hidden="true" />
           </span>
           <span className="leading-tight">
             <span className="block font-serif text-[15px] font-semibold tracking-tight text-heading sm:text-base">
-              Indian Art History Map
+              KalaYatra
+              <span aria-hidden="true" className="ml-2 inline-flex gap-1 align-middle">
+                <span className="h-1.5 w-1.5 rounded-full bg-accent" />
+                <span className="h-1.5 w-1.5 rounded-full bg-gold" />
+                <span className="h-1.5 w-1.5 rounded-full bg-indigo" />
+              </span>
             </span>
             <span className="hidden text-[11px] tracking-wide text-muted uppercase sm:block">
-              An Interactive Cultural Atlas
+              Atlas of Indian Art · कलायात्रा
             </span>
           </span>
         </a>

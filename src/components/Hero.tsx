@@ -41,22 +41,27 @@ export default function Hero() {
       aria-labelledby="hero-heading"
       className="reveal relative overflow-hidden"
     >
-      {/* Decorative background: faint pattern + line-art mandala + warm glow */}
+      {/* Decorative background: faint pattern + layered mandalas + festival aurora */}
       <div
         aria-hidden="true"
         className="heritage-pattern absolute inset-0 opacity-25 [mask-image:radial-gradient(60%_60%_at_20%_10%,black,transparent)]"
       />
       <Mandala className="absolute -top-44 -right-44 h-[580px] w-[580px] text-accent opacity-[0.08] dark:opacity-[0.12]" />
+      <Mandala className="absolute -bottom-56 -left-40 h-[440px] w-[440px] text-indigo opacity-[0.07] dark:opacity-[0.11]" />
       <div
         aria-hidden="true"
-        className="absolute -top-24 left-[8%] h-[360px] w-[360px] rounded-full bg-accent/10 blur-3xl"
+        className="absolute top-24 left-[38%] hidden h-[300px] w-[300px] rounded-full bg-rani/10 blur-3xl lg:block"
+      />
+      <div
+        aria-hidden="true"
+        className="absolute -top-24 right-[30%] h-[320px] w-[320px] rounded-full bg-saffron/10 blur-3xl"
       />
 
       <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-4 pt-14 pb-16 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:px-8 lg:pt-20 lg:pb-24">
         <div>
           <span className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-3.5 py-1.5 text-xs font-medium tracking-wide text-body">
             <Palette className="h-3.5 w-3.5 text-accent" aria-hidden="true" />
-            An interactive cultural atlas of India
+            KalaYatra — an interactive journey through Indian art
           </span>
 
           <h1
@@ -64,7 +69,10 @@ export default function Hero() {
             className="mt-5 font-serif text-4xl leading-[1.08] font-semibold tracking-tight text-heading sm:text-5xl xl:text-6xl"
           >
             Explore the{" "}
-            <span className="italic font-medium text-accent">Artistic&nbsp;Heritage</span> of India
+            <span className="text-gradient-festival italic font-medium">
+              Artistic&nbsp;Heritage
+            </span>{" "}
+            of India
           </h1>
 
           <p className="mt-5 max-w-xl text-base leading-relaxed text-body sm:text-lg">
@@ -75,7 +83,7 @@ export default function Hero() {
           <div className="mt-8 flex flex-wrap items-center gap-3">
             <a
               href="#map"
-              className="group inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 text-sm font-semibold text-on-accent shadow-sm transition-all hover:-translate-y-px hover:bg-accent-strong hover:shadow-md focus-visible:outline-2"
+              className="btn-festival group inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-on-accent shadow-sm hover:-translate-y-px hover:shadow-md focus-visible:outline-2"
             >
               <MapIcon className="h-4 w-4" aria-hidden="true" />
               Explore the Map

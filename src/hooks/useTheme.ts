@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 
 type Theme = "light" | "dark";
 
-const STORAGE_KEY = "iahm-theme";
+const STORAGE_KEY = "kalayatra-theme";
 
 function resolveInitialTheme(): Theme {
   if (typeof window === "undefined") return "light";

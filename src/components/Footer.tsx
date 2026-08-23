@@ -16,24 +16,38 @@ const SOURCE_LINKS = [
 
 export default function Footer() {
   return (
-    <footer className="bg-bg-deep">
-      <div aria-hidden="true" className="h-px bg-gradient-to-r from-transparent via-gold/70 to-transparent" />
+    <footer className="relative bg-bg-deep">
+      <div
+        aria-hidden="true"
+        className="h-px"
+        style={{
+          background:
+            "linear-gradient(90deg, transparent, var(--saffron), var(--rani), var(--indigo), var(--teal), var(--violet), transparent)",
+        }}
+      />
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         <div className="grid gap-10 md:grid-cols-[1.4fr_1fr_1fr]">
           <div>
             <p className="flex items-center gap-2.5">
-              <span className="grid h-9 w-9 place-items-center rounded-xl bg-accent text-on-accent">
+              <span className="brand-tile grid h-9 w-9 place-items-center rounded-xl text-on-accent">
                 <Landmark className="h-5 w-5" aria-hidden="true" />
               </span>
-              <span className="font-serif text-lg font-semibold text-heading">
-                Indian Art History Map
+              <span className="font-serif text-lg font-semibold text-heading">KalaYatra</span>
+              <span aria-hidden="true" className="flex gap-1">
+                <span className="h-1.5 w-1.5 rounded-full bg-accent" />
+                <span className="h-1.5 w-1.5 rounded-full bg-saffron" />
+                <span className="h-1.5 w-1.5 rounded-full bg-rani" />
+                <span className="h-1.5 w-1.5 rounded-full bg-indigo" />
+                <span className="h-1.5 w-1.5 rounded-full bg-teal" />
+                <span className="h-1.5 w-1.5 rounded-full bg-violet" />
               </span>
             </p>
             <p className="mt-3 max-w-sm text-sm leading-relaxed text-body">
               An interactive educational exploration of India's artistic heritage.
             </p>
-            <p className="mt-4 text-xs font-semibold tracking-widest text-gold uppercase">
-              Explore · Learn · Discover
+            <p className="mt-4 text-xs font-semibold tracking-widest uppercase">
+              <span className="text-accent">Explore</span> · <span className="text-saffron">Learn</span> ·{" "}
+              <span className="text-rani">Discover</span>
             </p>
           </div>
 
@@ -75,10 +89,11 @@ export default function Footer() {
         </div>
 
         <div className="mt-10 flex flex-col items-start justify-between gap-2 border-t border-border pt-6 text-xs text-muted sm:flex-row sm:items-center">
-          <p>Created as an educational project. © {new Date().getFullYear()} Indian Art History Map.</p>
+          <p>Created as an educational project. © {new Date().getFullYear()} KalaYatra.</p>
           <p>Map data © OpenStreetMap contributors · Imagery via Wikimedia Commons</p>
         </div>
       </div>
+      <div aria-hidden="true" className="festive-strip" />
     </footer>
   );
 }

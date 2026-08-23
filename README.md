@@ -1,6 +1,6 @@
-# Interactive Indian Art History Map
+# KalaYatra · कलायात्रा
 
-An interactive digital museum of India's artistic heritage — a real geographic map plotting **30 significant art locations** across **14 traditions** and more than **2,000 years** of creative practice, from prehistoric rock shelters to contemporary biennales.
+*“A journey through art”* — an interactive digital museum of India's artistic heritage. A real geographic map plotting **30 significant art locations** across **14 traditions** and more than **2,000 years** of creative practice, from prehistoric rock shelters to contemporary biennales.
 
 ![Tech](https://img.shields.io/badge/React-19-61dafb) ![Tech](https://img.shields.io/badge/TypeScript-strict-3178c6) ![Tech](https://img.shields.io/badge/Vite-8-646cff) ![Tech](https://img.shields.io/badge/Tailwind_CSS-v4-38bdf8) ![Tech](https://img.shields.io/badge/Leaflet-1.9-199900)
 
@@ -8,7 +8,7 @@ An interactive digital museum of India's artistic heritage — a real geographic
 
 ## Description
 
-The Indian Art History Map is a single-page web application that visualises the **geographic spread and influence of different art styles across India**. Each location on the real OpenStreetMap-based map opens a rich information panel containing photographs (Wikimedia Commons), historical context, documented artists and makers, major artworks and monuments, and a statement of the site's significance.
+KalaYatra is a single-page web application that visualises the **geographic spread and influence of different art styles across India**. Each location on the real OpenStreetMap-based map opens a rich information panel containing photographs (Wikimedia Commons), historical context, documented artists and makers, major artworks and monuments, and a statement of the site's significance.
 
 ## Objective
 

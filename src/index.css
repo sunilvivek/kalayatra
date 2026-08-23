@@ -23,6 +23,13 @@
   --gold: #b08d2f;          /* subtle gold, used sparingly */
   --on-accent: #fff8ef;
 
+  /* Festival jewel tones — Indian textile-inspired supporting palette */
+  --saffron: #b25e09;       /* marigold / turmeric */
+  --rani: #ad2f6f;          /* rani pink */
+  --indigo: #3a4fa8;        /* indigo dye */
+  --teal: #17705c;          /* peacock teal */
+  --violet: #6a44a3;        /* jamun violet */
+
   color-scheme: light;
 }
 
@@ -41,6 +48,13 @@
   --gold: #c9a75c;
   --on-accent: #1c130d;
 
+  /* Festival jewel tones — lifted for dark backgrounds */
+  --saffron: #f0a94f;
+  --rani: #e07bb1;
+  --indigo: #93a5ec;
+  --teal: #4fc0a0;
+  --violet: #b79ae8;
+
   color-scheme: dark;
 }
 
@@ -58,6 +72,11 @@
   --color-accent-soft: var(--accent-soft);
   --color-gold: var(--gold);
   --color-on-accent: var(--on-accent);
+  --color-saffron: var(--saffron);
+  --color-rani: var(--rani);
+  --color-indigo: var(--indigo);
+  --color-teal: var(--teal);
+  --color-violet: var(--violet);
 
   --font-serif: "Fraunces", "Iowan Old Style", Georgia, serif;
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
@@ -278,6 +297,51 @@ section[id] {
 /* Smooth theme switching */
 body {
   transition: background-color 0.35s ease, color 0.35s ease;
+}
+
+/* Festival-gradient headline accent */
+.text-gradient-festival {
+  background-image: linear-gradient(
+    100deg,
+    var(--accent) 0%,
+    var(--rani) 42%,
+    var(--indigo) 78%,
+    var(--violet) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Festival-gradient primary button */
+.btn-festival {
+  background-image: linear-gradient(120deg, var(--accent), var(--rani) 55%, var(--violet));
+  background-size: 160% 100%;
+  background-position: 0% 50%;
+  transition: background-position 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.25s ease, transform 0.2s ease;
+}
+.btn-festival:hover {
+  background-position: 90% 50%;
+}
+
+/* Thin festive bunting strip */
+.festive-strip {
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    var(--accent),
+    var(--saffron) 20%,
+    var(--rani) 40%,
+    var(--indigo) 60%,
+    var(--teal) 80%,
+    var(--violet)
+  );
+}
+
+/* Gradient brand tile for logo marks */
+.brand-tile {
+  background-image: linear-gradient(135deg, var(--accent), var(--rani) 60%, var(--violet));
 }
 
 /* ---------------------------------------------------------------------------

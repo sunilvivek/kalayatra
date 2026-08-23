@@ -36,10 +36,11 @@ export default function AboutSection() {
             <SectionHeading
               eyebrow="Educational Purpose"
               icon={Info}
+              tone="teal"
               headingId="about-heading"
               title={
                 <>
-                  About This <span className="italic text-accent">Map</span>
+                  About This <span className="italic text-teal">Atlas</span>
                 </>
               }
             />

@@ -196,6 +196,7 @@ export default function Home({ theme }: Props) {
           <header className="flex flex-wrap items-end justify-between gap-6">
             <SectionHeading
               eyebrow="Location Explorer"
+              tone="rani"
               headingId="locations-heading"
               title="Browse All Locations"
               description="Select any card to fly to its marker and open the detailed story panel."

@@ -11,6 +11,16 @@ interface Props {
   onLocateLocation: (id: string) => void;
 }
 
+/* Era identity colours — one jewel tone per historical period */
+const ERA_COLORS: Record<PeriodGroup, string> = {
+  Ancient: "var(--saffron)",
+  Medieval: "var(--indigo)",
+  "Mughal & Rajput": "var(--rani)",
+  Colonial: "var(--teal)",
+  Modern: "var(--accent)",
+  Contemporary: "var(--violet)",
+};
+
 export default function Timeline({ activePeriod, onSelectPeriod, onLocateLocation }: Props) {
   const ref = useReveal<HTMLElement>();
   const activeInfo = PERIODS.find((p) => p.group === activePeriod) ?? null;
@@ -23,8 +33,13 @@ export default function Timeline({ activePeriod, onSelectPeriod, onLocateLocatio
         <SectionHeading
           eyebrow="Historical Development"
           icon={History}
+          tone="saffron"
           headingId="timeline-heading"
-          title="A Journey Through Time"
+          title={
+            <>
+              A Journey Through <span className="italic text-saffron">Time</span>
+            </>
+          }
           description="Indian art evolved across distinct historical eras. Select a period to highlight the map locations that belong to it and see how artistic styles spread across regions over time."
         />
 
@@ -35,6 +50,7 @@ export default function Timeline({ activePeriod, onSelectPeriod, onLocateLocatio
             {PERIODS.map((period, i) => {
               const active = period.group === activePeriod;
               const count = ART_LOCATIONS.filter((l) => l.periodGroup === period.group).length;
+              const eraColor = ERA_COLORS[period.group];
               return (
                 <li key={period.group} className="min-w-[150px] flex-1 shrink-0">
                   <button
@@ -48,24 +64,32 @@ export default function Timeline({ activePeriod, onSelectPeriod, onLocateLocatio
                       aria-hidden="true"
                       className={`grid h-11 w-11 place-items-center rounded-full border font-serif text-sm font-semibold transition-all ${
                         active
-                          ? "border-accent bg-accent text-on-accent shadow-md ring-4 ring-accent/15"
+                          ? "text-white shadow-md"
                           : "border-border bg-surface text-body group-hover:border-accent group-hover:text-accent"
                       }`}
+                      style={
+                        active
+                          ? { backgroundColor: eraColor, borderColor: eraColor, boxShadow: `0 0 0 4px color-mix(in srgb, ${eraColor} 22%, transparent)` }
+                          : undefined
+                      }
                     >
                       {i + 1}
                     </span>
                     <span
                       className={`font-serif text-sm font-semibold leading-tight ${
-                        active ? "text-accent-strong" : "text-heading"
+                        active ? "text-heading" : "text-body"
                       }`}
                     >
                       {period.label}
                     </span>
                     <span className="text-[11px] whitespace-nowrap text-muted">{period.range}</span>
                     <span
-                      className={`rounded-full px-2 py-0.5 text-[10px] font-semibold tracking-wide uppercase ${
-                        active ? "bg-accent text-on-accent" : "bg-accent-soft text-accent-strong"
-                      }`}
+                      className="rounded-full px-2 py-0.5 text-[10px] font-semibold tracking-wide uppercase"
+                      style={
+                        active
+                          ? { backgroundColor: eraColor, color: "#fff" }
+                          : { backgroundColor: `color-mix(in srgb, ${eraColor} 14%, transparent)`, color: eraColor }
+                      }
                     >
                       {count} {count === 1 ? "site" : "sites"}
                     </span>
@@ -79,8 +103,17 @@ export default function Timeline({ activePeriod, onSelectPeriod, onLocateLocatio
         {/* Detail panel */}
         <div
           key={activeInfo?.group ?? "none"}
-          className="animate-fade-in-up mt-4 rounded-2xl border border-border bg-surface p-5 sm:p-7"
+          className="animate-fade-in-up relative mt-6 overflow-hidden rounded-2xl border border-border bg-surface p-5 sm:p-7"
         >
+          {activeInfo && (
+            <span
+              aria-hidden="true"
+              className="absolute inset-x-0 top-0 h-1"
+              style={{
+                background: `linear-gradient(90deg, ${ERA_COLORS[activeInfo.group]}, transparent 70%)`,
+              }}
+            />
+          )}
           {activeInfo ? (
             <div className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
               <div>
