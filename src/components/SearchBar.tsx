@@ -16,7 +16,6 @@ export default function SearchBar({ value, onChange, resultCount }: Props) {
         />
         <input
           type="search"
-          role="searchbox"
           id="location-search"
           value={value}
           onChange={(e) => onChange(e.target.value)}

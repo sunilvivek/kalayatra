@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import { ArrowLeft, ArrowRight, BookOpen, Compass, Landmark, MapPin, X } from "lucide-react";
 import ImageWithFallback from "./ImageWithFallback";
 import { CATEGORY_META, primaryCategory, type ArtLocation } from "../types/art";
@@ -11,7 +12,7 @@ interface Props {
   onClose: () => void;
 }
 
-function Section({ title, children }: { title: string; children: React.ReactNode }) {
+function Section({ title, children }: { title: string; children: ReactNode }) {
   return (
     <section>
       <h4 className="text-xs font-semibold tracking-wider text-muted uppercase">{title}</h4>

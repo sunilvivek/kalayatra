@@ -76,7 +76,7 @@ export default function Hero() {
         </div>
 
         {/* Image collage */}
-        <div className="relative mx-auto hidden w-full max-w-lg md:block" aria-hidden="false">
+        <div className="relative mx-auto hidden w-full max-w-lg md:block">
           <ul className="grid grid-cols-2 gap-4">
             {COLLAGE.map((loc, i) => (
               <li
