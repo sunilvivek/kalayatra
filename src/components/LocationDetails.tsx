@@ -54,6 +54,10 @@ export default function LocationDetails({
       aria-label={`Details for ${location.name}`}
       className="animate-fade-in-up flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-surface shadow-sm lg:min-h-[640px]"
     >
+      <div
+        aria-hidden="true"
+        className="h-1 w-full shrink-0 bg-gradient-to-r from-accent via-gold to-accent"
+      />
       <ImageWithFallback
         src={location.image}
         alt={location.imageAlt}
@@ -90,6 +94,10 @@ export default function LocationDetails({
               {location.state} · {location.region}
             </p>
             <p className="mt-0.5 text-xs text-muted">Period: {location.period}</p>
+            <p className="mt-1 font-mono text-[11px] text-muted">
+              {location.latitude.toFixed(2)}° {location.latitude >= 0 ? "N" : "S"} ·{" "}
+              {location.longitude.toFixed(2)}° {location.longitude >= 0 ? "E" : "W"}
+            </p>
           </div>
 
           <button

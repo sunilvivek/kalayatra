@@ -250,6 +250,37 @@ section[id] {
 }
 
 /* ---------------------------------------------------------------------------
+   Micro-interactions & ornaments
+--------------------------------------------------------------------------- */
+
+/* Animated underline for navbar links */
+.nav-link {
+  position: relative;
+}
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0.75rem;
+  right: 0.75rem;
+  bottom: 0.3rem;
+  height: 2px;
+  border-radius: 9999px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.nav-link:hover::after,
+.nav-link:focus-visible::after {
+  transform: scaleX(1);
+}
+
+/* Smooth theme switching */
+body {
+  transition: background-color 0.35s ease, color 0.35s ease;
+}
+
+/* ---------------------------------------------------------------------------
    Respect reduced motion preferences
 --------------------------------------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {

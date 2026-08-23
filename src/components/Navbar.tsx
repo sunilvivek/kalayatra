@@ -43,7 +43,7 @@ export default function Navbar({ theme, onToggleTheme }: Props) {
             <a
               key={link.href}
               href={link.href}
-              className="rounded-full px-3 py-2 text-sm font-medium text-body transition-colors hover:bg-surface-2 hover:text-heading"
+              className="nav-link rounded-full px-3 py-2 text-sm font-medium text-body transition-colors hover:bg-surface-2 hover:text-heading"
             >
               {link.label}
             </a>

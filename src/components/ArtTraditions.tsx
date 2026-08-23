@@ -11,8 +11,9 @@ import {
 } from "lucide-react";
 import { TRADITIONS } from "../data/traditions";
 import { ART_LOCATIONS } from "../data/artLocations";
-import type { ArtCategory } from "../types/art";
+import { CATEGORY_META, type ArtCategory } from "../types/art";
 import { useReveal } from "../hooks/useReveal";
+import SectionHeading from "./SectionHeading";
 
 interface Props {
   onExploreTradition: (category: ArtCategory) => void;
@@ -41,34 +42,35 @@ export default function ArtTraditions({ onExploreTradition, onLocateLocation }: 
       className="reveal border-y border-border bg-bg-deep"
     >
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
-        <header className="mx-auto max-w-2xl text-center">
-          <p className="text-xs font-semibold tracking-wider text-accent uppercase">
-            Movements & Schools
-          </p>
-          <h2
-            id="traditions-heading"
-            className="mt-2 font-serif text-3xl font-semibold tracking-tight text-heading sm:text-4xl"
-          >
-            Major Art Traditions of India
-          </h2>
-          <p className="mt-3 text-sm leading-relaxed text-body sm:text-base">
-            Each tradition links directly to the map locations where it can be studied. Select a card
-            to filter the map.
-          </p>
-        </header>
+        <SectionHeading
+          eyebrow="Movements & Schools"
+          align="center"
+          headingId="traditions-heading"
+          title="Major Art Traditions of India"
+          description="Each tradition links directly to the map locations where it can be studied. Select a card to filter the map."
+        />
 
         <ul className="mt-10 grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
           {TRADITIONS.map((t) => {
             const Icon = ICONS[t.id] ?? Brush;
+            const color = CATEGORY_META[t.categoryKey].color;
             const sites = t.locationIds
               .map((id) => ART_LOCATIONS.find((l) => l.id === id))
               .filter((l): l is NonNullable<typeof l> => Boolean(l));
 
             return (
               <li key={t.id}>
-                <article className="flex h-full flex-col rounded-2xl border border-border bg-surface p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-accent/50 hover:shadow-md">
-                  <span className="grid h-11 w-11 place-items-center rounded-xl bg-accent-soft">
-                    <Icon className="h-5 w-5 text-accent" aria-hidden="true" />
+                <article className="relative flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-surface p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-accent/50 hover:shadow-md">
+                  <span
+                    aria-hidden="true"
+                    className="absolute inset-x-0 top-0 h-0.5"
+                    style={{ backgroundColor: color }}
+                  />
+                  <span
+                    className="grid h-11 w-11 place-items-center rounded-xl"
+                    style={{ backgroundColor: `${color}1f`, color }}
+                  >
+                    <Icon className="h-5 w-5" aria-hidden="true" />
                   </span>
                   <h3 className="mt-4 font-serif text-lg font-semibold text-heading">{t.title}</h3>
                   <p className="mt-0.5 text-[11px] font-semibold tracking-wider text-gold uppercase">

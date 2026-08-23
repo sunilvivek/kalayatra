@@ -1,5 +1,6 @@
 import { BookOpen, Info } from "lucide-react";
 import { useReveal } from "../hooks/useReveal";
+import SectionHeading from "./SectionHeading";
 
 const SOURCES = [
   {
@@ -32,16 +33,16 @@ export default function AboutSection() {
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
         <div className="grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16">
           <div>
-            <p className="flex items-center gap-2 text-xs font-semibold tracking-wider text-accent uppercase">
-              <Info className="h-4 w-4" aria-hidden="true" />
-              Educational Purpose
-            </p>
-            <h2
-              id="about-heading"
-              className="mt-2 font-serif text-3xl font-semibold tracking-tight text-heading sm:text-4xl"
-            >
-              About This Map
-            </h2>
+            <SectionHeading
+              eyebrow="Educational Purpose"
+              icon={Info}
+              headingId="about-heading"
+              title={
+                <>
+                  About This <span className="italic text-accent">Map</span>
+                </>
+              }
+            />
 
             <div className="mt-5 space-y-4 text-sm leading-relaxed text-body sm:text-base">
               <p>

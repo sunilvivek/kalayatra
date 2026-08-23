@@ -3,6 +3,7 @@ import { PERIODS } from "../data/periods";
 import { ART_LOCATIONS } from "../data/artLocations";
 import type { PeriodGroup } from "../types/art";
 import { useReveal } from "../hooks/useReveal";
+import SectionHeading from "./SectionHeading";
 
 interface Props {
   activePeriod: PeriodGroup | null;
@@ -19,59 +20,60 @@ export default function Timeline({ activePeriod, onSelectPeriod, onLocateLocatio
   return (
     <section id="timeline" ref={ref} aria-labelledby="timeline-heading" className="reveal">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <header className="max-w-2xl">
-          <p className="flex items-center gap-2 text-xs font-semibold tracking-wider text-accent uppercase">
-            <History className="h-4 w-4" aria-hidden="true" />
-            Historical Development
-          </p>
-          <h2
-            id="timeline-heading"
-            className="mt-2 font-serif text-3xl font-semibold tracking-tight text-heading sm:text-4xl"
-          >
-            A Journey Through Time
-          </h2>
-          <p className="mt-3 text-sm leading-relaxed text-body sm:text-base">
-            Indian art evolved across distinct historical eras. Select a period to highlight the map
-            locations that belong to it and see how artistic styles spread across regions over time.
-          </p>
-        </header>
+        <SectionHeading
+          eyebrow="Historical Development"
+          icon={History}
+          headingId="timeline-heading"
+          title="A Journey Through Time"
+          description="Indian art evolved across distinct historical eras. Select a period to highlight the map locations that belong to it and see how artistic styles spread across regions over time."
+        />
 
         {/* Stepper */}
-        <div
-          role="group"
-          aria-label="Filter by historical period"
-          className="chip-scroll mt-8 flex gap-2 overflow-x-auto pb-3"
-        >
-          {PERIODS.map((period, i) => {
-            const active = period.group === activePeriod;
-            const count = ART_LOCATIONS.filter((l) => l.periodGroup === period.group).length;
-            return (
-              <button
-                key={period.group}
-                type="button"
-                aria-pressed={active}
-                onClick={() => onSelectPeriod(active ? null : period.group)}
-                title={period.range}
-                className={`relative flex min-w-[150px] flex-col items-start gap-1 rounded-2xl border px-4 py-3.5 text-left transition-all ${
-                  active
-                    ? "border-accent bg-accent text-on-accent shadow-md"
-                    : "border-border bg-surface hover:border-accent/60"
-                }`}
-              >
-                <span
-                  className={`text-[10px] font-semibold tracking-wider uppercase ${
-                    active ? "text-on-accent/75" : "text-gold"
-                  }`}
-                >
-                  Era {i + 1} · {count} sites
-                </span>
-                <span className="font-serif text-sm font-semibold">{period.label}</span>
-                <span className={`text-[11px] ${active ? "text-on-accent/80" : "text-muted"}`}>
-                  {period.range}
-                </span>
-              </button>
-            );
-          })}
+        <div role="group" aria-label="Filter by historical period" className="relative mt-10">
+          <div aria-hidden="true" className="absolute top-[21.5px] right-6 left-6 h-px bg-border" />
+          <ol className="chip-scroll relative flex gap-4 overflow-x-auto pb-3">
+            {PERIODS.map((period, i) => {
+              const active = period.group === activePeriod;
+              const count = ART_LOCATIONS.filter((l) => l.periodGroup === period.group).length;
+              return (
+                <li key={period.group} className="min-w-[150px] flex-1 shrink-0">
+                  <button
+                    type="button"
+                    aria-pressed={active}
+                    onClick={() => onSelectPeriod(active ? null : period.group)}
+                    title={period.range}
+                    className="group flex w-full flex-col items-center gap-2 rounded-xl px-2 py-2 text-center transition-colors focus-visible:outline-2"
+                  >
+                    <span
+                      aria-hidden="true"
+                      className={`grid h-11 w-11 place-items-center rounded-full border font-serif text-sm font-semibold transition-all ${
+                        active
+                          ? "border-accent bg-accent text-on-accent shadow-md ring-4 ring-accent/15"
+                          : "border-border bg-surface text-body group-hover:border-accent group-hover:text-accent"
+                      }`}
+                    >
+                      {i + 1}
+                    </span>
+                    <span
+                      className={`font-serif text-sm font-semibold leading-tight ${
+                        active ? "text-accent-strong" : "text-heading"
+                      }`}
+                    >
+                      {period.label}
+                    </span>
+                    <span className="text-[11px] whitespace-nowrap text-muted">{period.range}</span>
+                    <span
+                      className={`rounded-full px-2 py-0.5 text-[10px] font-semibold tracking-wide uppercase ${
+                        active ? "bg-accent text-on-accent" : "bg-accent-soft text-accent-strong"
+                      }`}
+                    >
+                      {count} {count === 1 ? "site" : "sites"}
+                    </span>
+                  </button>
+                </li>
+              );
+            })}
+          </ol>
         </div>
 
         {/* Detail panel */}

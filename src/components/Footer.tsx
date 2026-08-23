@@ -16,7 +16,8 @@ const SOURCE_LINKS = [
 
 export default function Footer() {
   return (
-    <footer className="border-t border-border bg-bg-deep">
+    <footer className="bg-bg-deep">
+      <div aria-hidden="true" className="h-px bg-gradient-to-r from-transparent via-gold/70 to-transparent" />
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         <div className="grid gap-10 md:grid-cols-[1.4fr_1fr_1fr]">
           <div>

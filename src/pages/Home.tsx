@@ -1,4 +1,5 @@
 import { useCallback, useMemo, useState } from "react";
+import { Compass } from "lucide-react";
 import Hero from "../components/Hero";
 import Stats from "../components/Stats";
 import SearchBar from "../components/SearchBar";
@@ -8,6 +9,7 @@ import LocationDetails from "../components/LocationDetails";
 import LocationGrid from "../components/LocationGrid";
 import Timeline from "../components/Timeline";
 import ArtTraditions from "../components/ArtTraditions";
+import SectionHeading from "../components/SectionHeading";
 import { getValidLocations } from "../data/artLocations";
 import type { ArtCategory, Medium, PeriodGroup } from "../types/art";
 
@@ -137,21 +139,13 @@ export default function Home({ theme }: Props) {
       {/* Explore: search + filters + map + details */}
       <section id="explore" aria-labelledby="explore-heading">
         <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8 lg:py-16">
-          <header className="max-w-2xl">
-            <p className="text-xs font-semibold tracking-wider text-accent uppercase">
-              Interactive Atlas
-            </p>
-            <h2
-              id="explore-heading"
-              className="mt-2 font-serif text-3xl font-semibold tracking-tight text-heading sm:text-4xl"
-            >
-              Explore the Map
-            </h2>
-            <p className="mt-3 text-sm leading-relaxed text-body sm:text-base">
-              Every marker represents a site where Indian art history was made. Select a marker, card
-              or tradition to open its full story.
-            </p>
-          </header>
+          <SectionHeading
+            eyebrow="Interactive Atlas"
+            icon={Compass}
+            headingId="explore-heading"
+            title="Explore the Map"
+            description="Every marker represents a site where Indian art history was made. Select a marker, card or tradition to open its full story."
+          />
 
           <div className="mt-7 space-y-4">
             <SearchBar value={query} onChange={setQuery} resultCount={filtered.length} />
@@ -199,21 +193,13 @@ export default function Home({ theme }: Props) {
         className="border-t border-border bg-bg-deep"
       >
         <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8 lg:py-16">
-          <header className="flex flex-wrap items-end justify-between gap-4">
-            <div className="max-w-2xl">
-              <p className="text-xs font-semibold tracking-wider text-accent uppercase">
-                Location Explorer
-              </p>
-              <h2
-                id="locations-heading"
-                className="mt-2 font-serif text-3xl font-semibold tracking-tight text-heading sm:text-4xl"
-              >
-                Browse All Locations
-              </h2>
-              <p className="mt-3 text-sm leading-relaxed text-body">
-                Select any card to fly to its marker and open the detailed story panel.
-              </p>
-            </div>
+          <header className="flex flex-wrap items-end justify-between gap-6">
+            <SectionHeading
+              eyebrow="Location Explorer"
+              headingId="locations-heading"
+              title="Browse All Locations"
+              description="Select any card to fly to its marker and open the detailed story panel."
+            />
             <p
               aria-live="polite"
               className="rounded-full border border-border bg-surface px-4 py-1.5 text-xs font-medium text-muted"

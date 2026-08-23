@@ -17,6 +17,7 @@ export default function LocationCard({ location, selected, onExplore }: Props) {
         selected ? "border-accent ring-2 ring-accent/30" : "border-border"
       }`}
     >
+      <span aria-hidden="true" className="h-1 w-full shrink-0" style={{ backgroundColor: meta.color }} />
       <button
         type="button"
         onClick={() => onExplore(location.id)}
@@ -26,7 +27,7 @@ export default function LocationCard({ location, selected, onExplore }: Props) {
         <ImageWithFallback
           src={location.image}
           alt={location.imageAlt}
-          className="aspect-[16/10] w-full"
+          className="aspect-[16/10] w-full [&_img]:transition-transform [&_img]:duration-700 group-hover:[&_img]:scale-[1.04]"
         />
       </button>
 
