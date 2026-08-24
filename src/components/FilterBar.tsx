@@ -1,5 +1,5 @@
-import { RotateCcw } from "lucide-react";
-import { ART_CATEGORIES, CATEGORY_META, MEDIUMS, type ArtCategory, type Medium } from "../types/art";
+import { RotateCcw, Landmark, Crown, Palette, Brush, Flower2, Amphora, Building2 } from "lucide-react";
+import { ART_CATEGORIES, MEDIUMS, type ArtCategory, type Medium } from "../types/art";
 
 interface Props {
   activeCategories: ArtCategory[];
@@ -24,6 +24,34 @@ export default function FilterBar({
   onReset,
 }: Props) {
   const categoriesAll = activeCategories.length === 0;
+
+  /* Map art categories to Lucide icon components */
+  function getCategoryIcon(cat: ArtCategory) {
+    switch (cat) {
+      case "Buddhist Art":
+        return Flower2;
+      case "Hindu Temple Art":
+      case "Jain Art":
+      case "Medieval Indian Art":
+      case "South Indian Art":
+      case "Tribal Art":
+        return Building2;
+      case "Mughal Art":
+      case "Rajput Art":
+      case "Pahari Art":
+        return Crown;
+      case "Bengal School":
+      case "Modern Indian Art":
+      case "Contemporary Indian Art":
+        return Palette;
+      case "Folk Art":
+        return Brush;
+      case "Ancient Indian Art":
+        return Amphora;
+      default:
+        return Landmark;
+    }
+  }
 
   return (
     <div className="space-y-3">
@@ -50,7 +78,7 @@ export default function FilterBar({
           </button>
           {ART_CATEGORIES.map((cat) => {
             const active = activeCategories.includes(cat);
-            const meta = CATEGORY_META[cat];
+            const Icon = getCategoryIcon(cat);
             return (
               <button
                 key={cat}
@@ -63,12 +91,8 @@ export default function FilterBar({
                     : "border-border bg-surface text-body hover:border-accent/60 hover:text-heading"
                 }`}
               >
-                <span
-                  aria-hidden="true"
-                  className={`h-2 w-2 shrink-0 rounded-full ${active ? "ring-1 ring-white/60" : ""}`}
-                  style={{ backgroundColor: meta.color }}
-                />
-                {cat.replace(" Indian Art", "").replace(" School", " Sch.")}
+                <Icon className={`h-3.5 w-3.5 shrink-0 ${active ? "text-on-accent" : "text-current"}`} aria-hidden="true" />
+                <span>{cat.replace(" Indian Art", "").replace(" School", " Sch.")}</span>
               </button>
             );
           })}

@@ -1,4 +1,4 @@
-import { ArrowUpRight, MapPin } from "lucide-react";
+import { ArrowUpRight, MapPin, Landmark, Crown, Palette, Brush, Flower2, Amphora, Building2 } from "lucide-react";
 import ImageWithFallback from "./ImageWithFallback";
 import { CATEGORY_META, primaryCategory, type ArtLocation } from "../types/art";
 
@@ -8,8 +8,37 @@ interface Props {
   onExplore: (id: string) => void;
 }
 
+/* Map art categories to Lucide icon components */
+function getCategoryIcon(cat: string) {
+  switch (cat) {
+    case "Buddhist Art":
+      return Flower2;
+    case "Hindu Temple Art":
+    case "Jain Art":
+    case "Medieval Indian Art":
+    case "South Indian Art":
+    case "Tribal Art":
+      return Building2;
+    case "Mughal Art":
+    case "Rajput Art":
+    case "Pahari Art":
+      return Crown;
+    case "Bengal School":
+    case "Modern Indian Art":
+    case "Contemporary Indian Art":
+      return Palette;
+    case "Folk Art":
+      return Brush;
+    case "Ancient Indian Art":
+      return Amphora;
+    default:
+      return Landmark;
+  }
+}
+
 export default function LocationCard({ location, selected, onExplore }: Props) {
   const meta = CATEGORY_META[primaryCategory(location)];
+  const CategoryIcon = getCategoryIcon(meta.label);
 
   return (
     <article
@@ -37,6 +66,7 @@ export default function LocationCard({ location, selected, onExplore }: Props) {
             className="inline-flex items-center gap-1.5 rounded-full px-2 py-0.5 font-semibold text-white"
             style={{ backgroundColor: meta.color }}
           >
+            <CategoryIcon className="h-3 w-3 shrink-0" aria-hidden="true" />
             {meta.label}
           </span>
           <span className="text-muted">{location.periodGroup}</span>

@@ -1,6 +1,6 @@
 import { useEffect, useMemo } from "react";
 import L from "leaflet";
-import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
+import { MapContainer, Marker, Popup, TileLayer, useMap, Tooltip } from "react-leaflet";
 import { CATEGORY_META, primaryCategory, type ArtLocation } from "../types/art";
 
 interface Props {
@@ -149,31 +149,46 @@ export default function ArtMap({ locations, selectedId, onSelect, theme }: Props
         <TileLayer key={theme} url={tileUrl} attribution={attribution} />
         <MapController selected={selected} />
 
-        {locations.map((loc) => (
-          <Marker
-            key={loc.id}
-            position={[loc.latitude, loc.longitude]}
-            icon={markerIcon(loc, loc.id === selectedId)}
-            zIndexOffset={loc.id === selectedId ? 1000 : 0}
-            eventHandlers={{ click: () => onSelect(loc.id) }}
-          >
-            <Popup>
-              <div className="space-y-1">
-                <p className="font-serif text-[15px] font-semibold text-heading">{loc.name}</p>
-                <p className="text-xs text-muted">
-                  {loc.state} · {loc.periodGroup}
-                </p>
-                <button
-                  type="button"
-                  onClick={() => onSelect(loc.id)}
-                  className="mt-1 rounded-full bg-accent px-3 py-1 text-xs font-semibold text-on-accent hover:bg-accent-strong"
-                >
-                  View full details
-                </button>
-              </div>
-            </Popup>
-          </Marker>
-        ))}
+        {locations.map((loc) => {
+          const primary = primaryCategory(loc);
+          return (
+            <Marker
+              key={loc.id}
+              position={[loc.latitude, loc.longitude]}
+              icon={markerIcon(loc, loc.id === selectedId)}
+              zIndexOffset={loc.id === selectedId ? 1000 : 0}
+              eventHandlers={{ click: () => onSelect(loc.id) }}
+            >
+              <Tooltip
+                direction="top"
+                offset={[0, -12]}
+                opacity={0.95}
+                className="art-marker-tooltip"
+              >
+                <div className="flex items-center gap-1.5 px-2 py-1 text-[12px] font-medium text-white">
+                  <span className="h-3.5 w-3.5 shrink-0 rounded-full" style={{ backgroundColor: CATEGORY_META[primary]?.color || "#8c6a2f" }} />
+                  <span className="truncate max-w-[180px]">{loc.name}</span>
+                  <span className="text-[10px] opacity-80">{primary}</span>
+                </div>
+              </Tooltip>
+              <Popup>
+                <div className="space-y-1">
+                  <p className="font-serif text-[15px] font-semibold text-heading">{loc.name}</p>
+                  <p className="text-xs text-muted">
+                    {loc.state} · {loc.periodGroup}
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() => onSelect(loc.id)}
+                    className="mt-1 rounded-full bg-accent px-3 py-1 text-xs font-semibold text-on-accent hover:bg-accent-strong"
+                  >
+                    View full details
+                  </button>
+                </div>
+              </Popup>
+            </Marker>
+          );
+        })}
       </MapContainer>
       {/* Screen-reader accessible alternative to the interactive canvas */}
       <ul id="sr-location-index" className="sr-only">
