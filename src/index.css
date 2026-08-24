@@ -30,6 +30,12 @@
   --teal: #17705c;          /* peacock teal */
   --violet: #6a44a3;        /* jamun violet */
 
+  /* Cultural decorative colors */
+  --henna: #7b2d12;         /* henna/mehndi brown */
+  --sindoor: #e64c2e;       /* vermilion red */
+  --turmeric: #e8a838;      /* bright turmeric yellow */
+  --neem: #4a7c2e;          /* neem green */
+
   color-scheme: light;
 }
 
@@ -54,6 +60,12 @@
   --indigo: #93a5ec;
   --teal: #4fc0a0;
   --violet: #b79ae8;
+
+  /* Cultural decorative colors */
+  --henna: #c95a2a;
+  --sindoor: #f07058;
+  --turmeric: #f2c45a;
+  --neem: #6db84a;
 
   color-scheme: dark;
 }
@@ -342,6 +354,412 @@ body {
 /* Gradient brand tile for logo marks */
 .brand-tile {
   background-image: linear-gradient(135deg, var(--accent), var(--rani) 60%, var(--violet));
+}
+
+/* ---------------------------------------------------------------------------
+   Respect reduced motion preferences
+--------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Enhanced visual design utilities
+--------------------------------------------------------------------------- */
+
+/* Glassmorphism / frosted glass */
+.glass {
+  background: color-mix(in srgb, var(--surface) 85%, transparent);
+  backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid color-mix(in srgb, var(--border) 60%, transparent);
+  box-shadow: 0 8px 32px -8px rgba(25, 15, 8, 0.18);
+}
+.glass-strong {
+  background: color-mix(in srgb, var(--surface) 92%, transparent);
+  backdrop-filter: blur(24px) saturate(200%);
+  border: 1px solid color-mix(in srgb, var(--border) 40%, transparent);
+  box-shadow: 0 16px 48px -12px rgba(25, 15, 8, 0.25);
+}
+
+/* Cultural gradient backgrounds */
+.bg-mandala {
+  background-image:
+    radial-gradient(circle at 20% 10%, color-mix(in srgb, var(--accent) 15%, transparent) 0%, transparent 50%),
+    radial-gradient(circle at 80% 90%, color-mix(in srgb, var(--rani) 12%, transparent) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, color-mix(in srgb, var(--gold) 8%, transparent) 0%, transparent 60%);
+}
+.bg-mandala-dark {
+  background-image:
+    radial-gradient(circle at 20% 10%, color-mix(in srgb, var(--accent) 22%, transparent) 0%, transparent 50%),
+    radial-gradient(circle at 80% 90%, color-mix(in srgb, var(--rani) 18%, transparent) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, color-mix(in srgb, var(--gold) 14%, transparent) 0%, transparent 60%);
+}
+
+/* Paisley-inspired pattern (very subtle) */
+.paisley-pattern {
+  background-image:
+    radial-gradient(ellipse at 50% 50%, color-mix(in srgb, var(--accent) 6%, transparent) 40%, transparent 70%),
+    repeating-radial-gradient(
+      circle at 0 0,
+      color-mix(in srgb, var(--accent) 3%, transparent),
+      color-mix(in srgb, var(--accent) 3%, transparent) 2px,
+      transparent 2px,
+      transparent 20px
+    );
+}
+
+/* Lotus petal decorative border */
+.lotus-border {
+  position: relative;
+}
+.lotus-border::before {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: inherit;
+  background: conic-gradient(
+    from 0deg,
+    var(--accent),
+    var(--rani) 30%,
+    var(--gold) 60%,
+    var(--teal) 90%,
+    var(--accent)
+  );
+  opacity: 0.15;
+  filter: blur(1px);
+  z-index: -1;
+}
+
+/* Gradient text utilities */
+.text-gradient-heritage {
+  background-image: linear-gradient(110deg, var(--accent), var(--rani) 35%, var(--gold) 70%, var(--teal));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.text-gradient-hero {
+  background-image: linear-gradient(120deg, var(--accent) 0%, var(--saffron) 25%, var(--rani) 50%, var(--indigo) 75%, var(--violet) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Enhanced card shadows with color bleed */
+.shadow-heritage {
+  box-shadow:
+    0 2px 8px -2px color-mix(in srgb, var(--accent) 18%, transparent),
+    0 8px 24px -8px color-mix(in srgb, var(--accent) 10%, transparent);
+}
+.shadow-heritage-lg {
+  box-shadow:
+    0 4px 16px -4px color-mix(in srgb, var(--accent) 22%, transparent),
+    0 16px 40px -12px color-mix(in srgb, var(--accent) 14%, transparent);
+}
+.shadow-heritage-xl {
+  box-shadow:
+    0 8px 32px -8px color-mix(in srgb, var(--accent) 25%, transparent),
+    0 24px 64px -16px color-mix(in srgb, var(--accent) 18%, transparent);
+}
+
+/* Colored accent borders for cards */
+.border-heritage {
+  border-image: linear-gradient(135deg, var(--accent), var(--rani), var(--gold), var(--teal)) 1;
+}
+.border-heritage-hover:hover {
+  border-image: linear-gradient(135deg, var(--accent), var(--rani), var(--gold), var(--teal)) 1;
+}
+
+/* Staggered animation delays for lists */
+.stagger-1 { animation-delay: 0.05s; }
+.stagger-2 { animation-delay: 0.1s; }
+.stagger-3 { animation-delay: 0.15s; }
+.stagger-4 { animation-delay: 0.2s; }
+.stagger-5 { animation-delay: 0.25s; }
+.stagger-6 { animation-delay: 0.3s; }
+.stagger-7 { animation-delay: 0.35s; }
+.stagger-8 { animation-delay: 0.4s; }
+
+/* Enhanced focus styles with cultural colors */
+.focus-ring-heritage:focus-visible {
+  outline: none;
+  ring: 2px;
+  ring-color: var(--accent);
+  ring-offset: 2px;
+  ring-offset-color: var(--surface);
+}
+
+/* Custom scrollbar for webkit */
+.scrollbar-heritage::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+.scrollbar-heritage::-webkit-scrollbar-track {
+  background: color-mix(in srgb, var(--bg-deep) 90%, transparent);
+}
+.scrollbar-heritage::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--accent), var(--rani), var(--gold));
+  border-radius: 9999px;
+  border: 2px solid var(--bg-deep);
+}
+
+/* Tooltip enhancements */
+.art-marker-tooltip {
+  filter: drop-shadow(0 4px 12px rgba(25, 15, 8, 0.35));
+}
+.art-marker-tooltip > div {
+  background: linear-gradient(135deg, var(--heading) 0%, color-mix(in srgb, var(--heading) 75%, var(--accent)) 100%);
+  border: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
+  border-radius: 10px;
+  padding: 6px 10px;
+}
+
+/* Map tooltip enhancements */
+.map-shell .leaflet-tooltip {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+.map-shell .leaflet-tooltip-pane .leaflet-tooltip {
+  background: transparent !important;
+  border: none !important;
+}
+
+/* Floating animation for decorative elements */
+@keyframes float-gentle {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-8px) rotate(1deg); }
+}
+.animate-float-gentle {
+  animation: float-gentle 6s ease-in-out infinite;
+}
+
+/* Pulse glow for accent elements */
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 40%, transparent); }
+  50% { box-shadow: 0 0 24px 4px color-mix(in srgb, var(--accent) 50%, transparent); }
+}
+.animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+/* Shimmer loading effect */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--border) 60%, transparent) 25%,
+    color-mix(in srgb, var(--border) 20%, transparent) 50%,
+    color-mix(in srgb, var(--border) 60%, transparent) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+}
+
+/* Staggered reveal for grid items */
+.reveal-stagger > * {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fade-in-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+.reveal-stagger > *:nth-child(1) { animation-delay: 0.05s; }
+.reveal-stagger > *:nth-child(2) { animation-delay: 0.1s; }
+.reveal-stagger > *:nth-child(3) { animation-delay: 0.15s; }
+.reveal-stagger > *:nth-child(4) { animation-delay: 0.2s; }
+.reveal-stagger > *:nth-child(5) { animation-delay: 0.25s; }
+.reveal-stagger > *:nth-child(6) { animation-delay: 0.3s; }
+.reveal-stagger > *:nth-child(7) { animation-delay: 0.35s; }
+.reveal-stagger > *:nth-child(8) { animation-delay: 0.4s; }
+
+/* Hover lift with color bleed */
+.hover-lift-heritage {
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.hover-lift-heritage:hover {
+  transform: translateY(-6px);
+  box-shadow:
+    0 12px 32px -8px color-mix(in srgb, var(--accent) 20%, transparent),
+    0 20px 48px -16px color-mix(in srgb, var(--accent) 12%, transparent);
+}
+
+/* Progress bar with heritage gradient */
+.progress-heritage {
+  height: 4px;
+  background: var(--border);
+  border-radius: 9999px;
+  overflow: hidden;
+}
+.progress-heritage > div {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent), var(--saffron), var(--rani), var(--gold), var(--teal), var(--indigo));
+  background-size: 200% 100%;
+  animation: progress-flow 3s linear infinite;
+  border-radius: 9999px;
+}
+@keyframes progress-flow {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+/* Image hover zoom with subtle rotation */
+.img-zoom-heritage {
+  overflow: hidden;
+  border-radius: inherit;
+}
+.img-zoom-heritage img {
+  transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.img-zoom-heritage:hover img {
+  transform: scale(1.06) rotate(0.5deg);
+}
+
+/* Divider with cultural ornament */
+.divider-heritage {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: var(--muted);
+}
+.divider-heritage::before,
+.divider-heritage::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
+}
+.divider-heritage::before { background: linear-gradient(90deg, var(--border), transparent); }
+.divider-heritage::after { background: linear-gradient(90deg, transparent, var(--border)); }
+.divider-heritage > span {
+  font-size: 1.25rem;
+  opacity: 0.6;
+}
+
+/* Cultural badge */
+.badge-heritage {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.375rem 0.875rem;
+  border-radius: 9999px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  background: linear-gradient(135deg, color-mix(in srgb, var(--accent) 18%, transparent), color-mix(in srgb, var(--rani) 14%, transparent));
+  border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+  color: var(--accent-strong);
+}
+.dark .badge-heritage {
+  background: linear-gradient(135deg, color-mix(in srgb, var(--accent) 22%, transparent), color-mix(in srgb, var(--rani) 18%, transparent));
+  border-color: color-mix(in srgb, var(--accent) 45%, transparent);
+  color: var(--accent);
+}
+
+/* Timeline connector line */
+.timeline-connector {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(180deg, var(--accent), var(--saffron), var(--rani), var(--gold), var(--teal), var(--indigo));
+  transform: translateX(-50%);
+}
+
+/* Enhanced form inputs */
+.input-heritage {
+  background: var(--surface);
+  border: 2px solid var(--border);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+.input-heritage:hover {
+  border-color: var(--accent);
+}
+.input-heritage:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 22%, transparent);
+  outline: none;
+}
+
+/* Button with heritage gradient */
+.btn-heritage {
+  background: linear-gradient(135deg, var(--accent), var(--saffron) 45%, var(--rani) 70%);
+  color: var(--on-accent);
+  font-weight: 600;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+}
+.btn-heritage:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px -8px color-mix(in srgb, var(--accent) 45%, transparent);
+  filter: brightness(1.05);
+}
+.btn-heritage:active {
+  transform: translateY(0);
+}
+
+/* Cultural ornament divider */
+.ornament-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin: 2rem 0;
+}
+.ornament-divider::before,
+.ornament-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
+}
+.ornament-divider::before { background: linear-gradient(90deg, var(--border), transparent); }
+.ornament-divider::after { background: linear-gradient(90deg, transparent, var(--border)); }
+.ornament-divider > span {
+  width: 1.25rem;
+  height: 1.25rem;
+  background: linear-gradient(135deg, var(--accent), var(--gold));
+  clip-path: polygon(50% 0%, 100% 38%, 100% 62%, 50% 100%, 0% 62%, 0% 38%);
+  transform: rotate(45deg);
+  animation: float-gentle 4s ease-in-out infinite;
+}
+
+/* Card with heritage border accent */
+.card-heritage {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  overflow: hidden;
+}
+.card-heritage::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--saffron), var(--rani), var(--gold), var(--teal), var(--indigo));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.card-heritage:hover::before {
+  opacity: 1;
 }
 
 /* ---------------------------------------------------------------------------
